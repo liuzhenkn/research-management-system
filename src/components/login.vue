@@ -1,9 +1,11 @@
 <template>
-  <div id="mod-login">
+  <div id="modLogin">
     <el-card class="box-card">
-      <el-input class="account" v-model="account" placeholder="请输入账号"></el-input>
-      <el-input class="password" type="password" v-model="password" placeholder="请输入密码"></el-input>
-      <el-button class="login-btn" @click="login">登录</el-button>
+      <span class="logo"></span><h4 class="title">科研项目过程管理系统</h4>
+      <el-input class="account" v-model="account" placeholder="学号"></el-input>
+      <el-input class="password" type="password" v-model="password" placeholder="密码"></el-input>
+      <el-button type="primary" class="login-btn" @click="login">登录</el-button>
+      <el-button type="text" class="login-forget">忘记密码?</el-button>
     </el-card>
   </div>
 </template>
@@ -43,20 +45,56 @@
             location.hash = "/index";
           }
         });
+      },
+      mounted() {
+        let rootEle = document.getElementById("modLogin")
+        rootEle.style.height = window.innerHeight + "px";
       }
     }
 </script>
 <style lang="less">
-  #mod-login{
+  html,body{
     margin: 0;
     padding: 0;
-    font-size: 0;
+  }
+  #modLogin{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: #0099cc;
+    background-size: 100%;
     .box-card{
-      width: 40%;
-      margin: 0 auto;
+      width: 30%;
+      min-width: 400px;
+      margin: auto;
+      .logo{
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        margin-bottom: -18px;
+        background: url(../resource/img/logo.jpg);
+        background-size: 100%;
+      }
+      .title{
+        display: inline-block;
+        font-size: 20px;
+        font-family: 'KaiTi','SimSun';
+      }
+      .account,.password{
+        margin: 0 0 15px 0;
+      }
+      .login-btn{
+        width: 100%;
+      }
+      .login-forget{
+        font-size: 12px;
+        float: right;
+      }
     }
-    .account,.password{
-      margin: 0 0 15px 0;
+    @media screen and (max-width: 500px) {
+      .box-card {
+          width: 100%;
+      }
     }
   }
 </style>

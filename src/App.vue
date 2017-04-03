@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <div>
-      <router-link to="/login"></router-link>
-      <router-link to="/index"></router-link>
-    </div>
+    <router-link to="/login"></router-link>
+    <router-link to="/index"></router-link>
     <router-view></router-view>
   </div>
 </template>
