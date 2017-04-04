@@ -5,23 +5,24 @@ import VueRouter from 'vue-router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import App from './App';
-import login from './components/login';
-import index from './components/index';
-Vue.use(VueRouter);
+import apply from './components/apply/apply.vue';
+import look from './components/look/look.vue';
+
 Vue.use(ElementUI);
+Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
 
 let routes = [
-  {path: '/', redirect: '/login'},
-  {path: '/login', component: login},
-  {path: '/index', component: index}
+  {path: '/', component: look},
+  {path: '/apply', component: apply}
 ];
 
 let router = new VueRouter({
   routes: routes,
   linkActiveClass: 'active'
 });
+
 
 /* eslint-disable no-new */
 let apps = new Vue({

@@ -26,25 +26,17 @@
           account : this.account,
           password : this.password
         };
-        console.log(data)
+        console.log(data);
         axios.post('/api/login/getAccount',data)
           .then((response) => {
             // 响应成功回调
             if(response.data === 0 || response.data === 1){
               alert("用户名/密码错误")
             }else{
-              location.hash = "/index";
+              this.$emit("login");
             }
           });
         }
-      },
-      beforeCreate() {
-        axios.get('/api/isLogin')
-        .then((response) => {
-          if(response.data){
-            location.hash = "/index";
-          }
-        });
       },
       mounted() {
         let rootEle = document.getElementById("modLogin")
