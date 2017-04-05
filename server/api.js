@@ -20,20 +20,33 @@ const router = express.Router();
 //         }
 //     });
 // });
+//查询登录状态
 router.get('/api/isLogin',(req,res) => {
-  res.send(req.session.account);
+  if(req.session.account){
+    models.Login.find({account:req.session.account},(err,data) => {
+      res.send(data);
+    });
+  }else{
+    res.send(req.session.account);
+  }
+});
+//注销接口
+router.get('/api/logoff',(req,res) => {
+  req.session.account = null;
+  res.send("log off success!");
 });
 // 登录接口
 router.post('/api/login/getAccount',(req,res) => {
     // 通过模型去查找数据库
-    var account = req.body.account;
-    var password = req.body.password;
+    let account = req.body.account;
+    let password = req.body.password;
     models.Login.find({account:account},(err,data) => {
-        if (!data[0]) {
-            var msg = "0";
+        console.log(data);
+        if (!data) {
+            let msg = "0";
             res.send(msg);
         } else if(data[0].password != password){
-            var msg = "1";
+            let msg = "1";
             res.send(msg);
         } else {
             req.session.account = account;
@@ -41,5 +54,18 @@ router.post('/api/login/getAccount',(req,res) => {
         }
     });
 });
-
+//修改密码
+router.post('/api/changePassword',(req,res) => {
+  console.log(req.body.newPassword);
+  let account = req.body.account;
+  let password = req.body.newPassword;
+  models.Login.update({'account':account},{$set:{'password':password}},function(err){
+    if(err){
+      console.log(err);
+    }else{
+      let msg = "修改成功";
+      res.send(msg);
+    }
+  })
+});
 module.exports = router;

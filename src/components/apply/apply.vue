@@ -1,5 +1,5 @@
 <template>
-  <div id="modApply">
+  <div class="mod-apply">
     apply
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div id="modLook">
+  <div class="mod-look">
     look
   </div>
 </template>

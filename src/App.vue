@@ -4,10 +4,7 @@
     <router-link to="/index"></router-link>
     <router-view></router-view> -->
     <login v-if="!isLogin" @login="loginSuccess"></login>
-    <index v-if="isLogin"></index>
-    <div class="hhh">
-      {{isLogin}}
-    </div>
+    <index v-if="isLogin" :userInfo="userInfo"></index>
   </div>
 </template>
 
@@ -18,16 +15,15 @@ import axios from 'axios';
 export default {
   data(){
     return {
-      isLogin: false
+      isLogin: false,
+      userInfo: {}
     };
   },
-  components: {
-    index: index,
-    login: login
-  },
   methods: {
-    loginSuccess() {
+    //子组件登陆成功后父组件触发
+    loginSuccess(data) {
       this.isLogin = true;
+      this.userInfo = data;
     }
   },
   mounted() {
@@ -36,8 +32,13 @@ export default {
       console.log(response.data);
       if(response.data){
         this.isLogin = true;
+        this.userInfo = response.data[0];
       }
     });
+  },
+  components: {
+    index: index,
+    login: login
   }
 }
 </script>

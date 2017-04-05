@@ -1,5 +1,5 @@
 <template>
-  <div id="modLogin">
+  <div class="mod-login">
     <el-card class="box-card">
       <span class="logo"></span><h4 class="title">科研项目过程管理系统</h4>
       <el-input class="account" v-model="account" placeholder="学号"></el-input>
@@ -26,30 +26,27 @@
           account : this.account,
           password : this.password
         };
-        console.log(data);
         axios.post('/api/login/getAccount',data)
           .then((response) => {
             // 响应成功回调
             if(response.data === 0 || response.data === 1){
-              alert("用户名/密码错误")
+              alert("用户名/密码错误");
             }else{
-              this.$emit("login");
+              this.$emit("login",response.data[0]);
             }
           });
         }
-      },
-      mounted() {
-        let rootEle = document.getElementById("modLogin")
-        rootEle.style.height = window.innerHeight + "px";
       }
     }
 </script>
 <style lang="less">
-  html,body{
+  html,body,#app{
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
   }
-  #modLogin{
+  .mod-login{
     display: flex;
     width: 100%;
     height: 100%;

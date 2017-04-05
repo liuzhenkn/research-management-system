@@ -1,7 +1,7 @@
 <template>
     <div class="side-nav">
-      <el-col :span="4">
-        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+      <el-col>
+        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark">
           <el-submenu index="1">
             <template slot="title"><i class="el-icon-message"></i>项目过程管理</template>
               <a href="/#/apply"><el-menu-item index="1-1">申请项目</el-menu-item></a>
@@ -29,6 +29,10 @@
 </script>
 <style lang="less">
   .side-nav{
+    height: 100%;
+    .el-col,.el-menu{
+      height: 100%;
+    }
     a{
       text-decoration: none;
     }
