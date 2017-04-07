@@ -29,9 +29,15 @@
 </script>
 <style lang="less">
   .side-nav{
+    box-sizing: border-box;
     height: 100%;
-    .el-col,.el-menu{
+    margin-top: -117px;
+    padding-top: 117px;
+    .el-col{
       height: 100%;
+      .el-menu{
+        height: 100%;
+      }
     }
     a{
       text-decoration: none;

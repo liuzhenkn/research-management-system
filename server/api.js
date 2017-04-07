@@ -41,8 +41,7 @@ router.post('/api/login/getAccount',(req,res) => {
     let account = req.body.account;
     let password = req.body.password;
     models.Login.find({account:account},(err,data) => {
-        console.log(data);
-        if (!data) {
+        if (!data[0]) {
             let msg = "0";
             res.send(msg);
         } else if(data[0].password != password){
@@ -69,3 +68,61 @@ router.post('/api/changePassword',(req,res) => {
   })
 });
 module.exports = router;
+
+
+
+// function versionCompare(v1,v2){
+//   let params = trimVersion(v1,v2);
+//   if(params){
+//     let version1 = params.version1;
+//     let version2 = params.version2;
+//     let i = 0;
+//     let length = version1.length<version2.length?version1.length:version2.length;
+//     let result = version1[i]-version2[i];
+//     //循环比较直到不同或到达长度
+//     while(result===0 && i<length){
+//       i++;
+//       result = version1[i]-version2[i];
+//     }
+//     //比较不同版本号的大小，如果是NaN则比较长度
+//     if(result>0){
+//       return true;
+//     }else if(result<0){
+//       return false;
+//     }else{
+//       if(version1.length === version2.length){
+//         console.log("版本号相同");
+//       }else{
+//           return version1.length>version2.length?true:false;
+//       }
+//     }
+//   }else{
+//     console.log("版本号参数错误!");
+//   }
+// }
+//
+// //版本号预先处理，取出主版本号、子版本号、阶段版本号
+// function trimVersion(v1,v2){
+//   if(v1&&v2){
+//     var arr1 = v1.replace(/(^\s*)|(\s*$)/g, "").split(/\D/);
+//     var arr2 = v2.replace(/(^\s*)|(\s*$)/g, "").split(/\D/);
+//     var version1 = [];
+//     var version2 = [];
+//     arr1.forEach((value) =>{
+//       if(value != ''){
+//         version1.push(value);
+//       }
+//     });
+//     arr2.map((value) =>{
+//       if(value != ''){
+//         version2.push(value);
+//       }
+//     });
+//     return {
+//       version1: version1,
+//       version2: version2
+//     };
+//   }else{
+//     return false;
+//   }
+// }
