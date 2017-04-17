@@ -45,6 +45,7 @@
     .top-wrapper{
       width: 100%;
       height: 50px;
+      min-width: 900px;
       background: #1F2D3D;
       .logo{
         display: inline-block;
